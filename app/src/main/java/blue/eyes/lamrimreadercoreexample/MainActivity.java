@@ -157,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
                     searchIndex.index--;
                 }
                 else{
-                    searchIndex.page=0;
+                    searchIndex.page=pageIndex;
                     searchIndex.line=0;
                     searchIndex.line=-1;
                 }
@@ -189,7 +189,7 @@ public class MainActivity extends AppCompatActivity {
                     searchIndex.index++;
                 }
                 else{
-                    searchIndex.page=0;
+                    searchIndex.page=pageIndex;
                     searchIndex.line=0;
                     searchIndex.index=-1;
                 }
@@ -226,10 +226,13 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+
     public void showPage(int num){
         if(listener == null) {
             final float smallSize=0.9f;
             listener = new TheoryParseListener() {
+                @Override
                 public void onSegmentFound(int line, int index, int length, String segText, boolean isBold, boolean isNum, boolean isSmall) {
                     Log.d(getClass().getName(), "Found segment =" + segText);
                     SpannableString str = new SpannableString(segText);
@@ -250,11 +253,13 @@ public class MainActivity extends AppCompatActivity {
                     pageView.append(str);
                 }
 
+                @Override
                 public void onNewLineFound(int line, int index) {
                     Log.d(getClass().getName(), "Found new line");
                     pageView.append("\n");
                 }
 
+                @Override
                 public void onFinishParse(ArrayList<Dot> dotList) {
                     if(highlightMark != null && pageIndex == highlightMark.page)
                         highlightText();
@@ -309,5 +314,5 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
-    };
+    }
 }

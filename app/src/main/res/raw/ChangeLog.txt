@@ -1,0 +1,7 @@
+V 1.0.1
+1. 修正 MainActivity 中 searchLastBtn.setOnClickListener中：
+	searchIndex.page=pageIndex;
+	searchIndex.line=0;
+	searchIndex.line=-1;  => searchIndex.index=-1;
+
+2. 修改搜尋行為為從目前的頁面開始搜尋，而非新的搜尋都從第一頁開始搜尋。

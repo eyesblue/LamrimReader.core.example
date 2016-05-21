@@ -6,7 +6,6 @@ import java.util.ArrayList;
  */
 public class TheoryUtil {
     boolean debug=true;
-    float smallRate=0.9f;
     public final static int TO_START=1;
     public final static int TO_END=2;
     String[] bookContent=null;
@@ -59,7 +58,7 @@ public class TheoryUtil {
                     String str=text.substring(start, end);
                     listener.onSegmentFound(lineCounter, start, end-start, str, isBold, isNum, isSmall);
                     line.append(str);
-                    dotList.add(new Dot(lineCounter, line.length(), ((isSmall)?smallRate:1), c));
+                    dotList.add(new Dot(lineCounter, line.length(), isSmall, c));
                 if(debug)System.out.println("Print "+text.substring(start, end)+", start: "+start+", end: "+end+", ("+(end-start)+")");
                 start=i+1;
                 end=start;

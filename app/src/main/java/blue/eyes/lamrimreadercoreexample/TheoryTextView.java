@@ -25,6 +25,7 @@ public class TheoryTextView extends TextView {
     int pageIndex=-1;
     ArrayList<Dot> dotList = null;
     LinearIndex[] highlightMarks=null;
+    float smallTextSizeRate=0.9f;
 
     public TheoryTextView(Context context) {
         super(context);
@@ -108,7 +109,7 @@ public class TheoryTextView extends TextView {
             Rect rect=new Rect();
             int y=getLineBounds(d.line, rect);  // 取得該行的座標基準位置
 
-            paint.setTextSize(orgTextSize * d.sizeRate);  //若此行是標題小字，則將字形設定為小字字型，以利後續計算
+            if(d.isSmall)paint.setTextSize(orgTextSize * smallTextSizeRate);  //若此行是標題小字，則將字形設定為小字字型，以利後續計算
             if(d.c=='。'){   //此符號是句號則設定為空點。
                 paint.setStyle(Paint.Style.STROKE);
                 paint.setStrokeWidth(2);
